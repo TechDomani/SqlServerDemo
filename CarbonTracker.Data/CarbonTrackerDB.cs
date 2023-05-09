@@ -1,6 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Reflection;
 
 namespace CarbonTracker.Data
 {
@@ -16,12 +15,12 @@ namespace CarbonTracker.Data
         public List<string> GetUserNames()
         {
             var names = new List<string>();
-            using (SqliteConnection connection = new SqliteConnection())
+            using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = _connectionString;
                 connection.Open();
-                SqliteCommand command = connection.CreateCommand();
-                command.CommandText = "Select * from main.users";
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "Select * from dbo.users";
                 var dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -34,13 +33,13 @@ namespace CarbonTracker.Data
 
         public void AddUserName(string userName)
         {
-            using (SqliteConnection connection = new SqliteConnection())
+            using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = _connectionString;
                 connection.Open();
-                SqliteCommand command = connection.CreateCommand();
-                command.CommandText = "insert into main.users (name) VALUES (@Name)";
-                var nameParameter = command.Parameters.Add("@Name", SqliteType.Text);
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "insert into dbo.users (name) VALUES (@Name)";
+                var nameParameter = command.Parameters.Add("@Name", SqlDbType.Text);
                 nameParameter.Value= userName;
                 command.ExecuteNonQuery();
             }
