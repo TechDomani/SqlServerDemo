@@ -7,10 +7,10 @@ namespace CarbonTracker
     {
         static void Main()
         {
-            var config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
-            string connectionString = config["ConnectionStrings:carbonDb"] ?? string.Empty;
-            Console.WriteLine(connectionString);            
-            CarbonTrackerDb db = new(connectionString);
+            const string ConnectionString = "Data Source=DESKTOP-8BNVI95;Initial Catalog=carbon;Integrated Security=True;TrustServerCertificate=True";
+
+			Console.WriteLine(ConnectionString);            
+            CarbonTrackerDb db = new(ConnectionString);
 
             var names = db.GetUserNames();
             Console.WriteLine("User Names:");

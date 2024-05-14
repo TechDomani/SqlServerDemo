@@ -16,10 +16,4 @@
     <ProjectReference Include="..\CarbonTracker.Data\CarbonTracker.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
