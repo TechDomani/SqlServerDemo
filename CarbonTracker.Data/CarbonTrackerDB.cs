@@ -20,11 +20,11 @@ namespace CarbonTracker.Data
                 connection.ConnectionString = _connectionString;
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Select * from dbo.users";
+                command.CommandText = "Select name from dbo.users";
                 var dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    var name = dataReader.GetString(1);
+                    var name = dataReader.GetString(0);
                     names.Add(name);
                 }
             }
